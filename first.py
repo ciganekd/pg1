@@ -6,12 +6,16 @@
 #nahrajte ho do repozitáře
 #odkaz na váš repozitář nahrajte zde
 
+cislo= int(input("zadej cislo: "))
 def sudy_nebo_lichy(cislo):
-    if cislo % 2 == 0:
-        print(f"Číslo {cislo} je sudé")
+	
+    if cislo % 2 == 0: # cislo ktere se da vydelit dvemi beze zbytku
+        print(f"Číslo {cislo} je sudé")
     else:
-        print(f"Číslo {cislo} je liché")
+        print(f"Číslo {cislo} je liché")
 
-# Volání funkcí
+# Volání funkcí
+sudy_nebo_lichy(cislo)
+print("")
 sudy_nebo_lichy(5)
 sudy_nebo_lichy(1000000)
