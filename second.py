@@ -1,18 +1,39 @@
-#Ve svém repozitáři vytvořte soubor second.py, jako vzor použijte soubor přiložený k tomuto zadání. Upravte funkci
-
-#cislo_text, která bude převádět číslo předané v parametru cislo na textovou reprezentaci daného čísla a tento text vrátí pomocí příkazu return. Příklad fungování funkce:
-#"0" -> "nula"
-#"1" -> "jedna"
-#"15" -> "patnáct"
-#"25" -> "dvacet pět"
-#"100" -> "sto"
-#fungování svého programu můžete vyzkoušet spuštěním "python second.py", nebo kliknutím na symbol "run" vpravo nahoře ve vašem codespace na github.com.
-#Termín pro odevzdání úlohy (nahrání do vašeho repozitáře) je Středa 15.10.2025 15:00. Zde na moodlu jako řešení pouze napiště "hotovo", abych vám mohl přidat hodnocení.
-
 def cislo_text(cislo):
-    # funkce zkonvertuje cislo do jeho textove reprezentace
-    # napr: "25" -> "dvacet pět", omezte se na cisla od 0 do 100
-    return "dvacet pět"
+    cislo = int(cislo) #přetransformování stringu na int
+#vytvoření slovníků
+    jednotky = {
+        0: "nula", 1: "jedna", 2: "dva", 3: "tři", 4: "čtyři",
+        5: "pět", 6: "šest", 7: "sedm", 8: "osm", 9: "devět"
+    }
+
+    náct = {
+        10: "deset", 11: "jedenáct", 12: "dvanáct", 13: "třináct",
+        14: "čtrnáct", 15: "patnáct", 16: "šestnáct", 17: "sedmnáct",
+        18: "osmnáct", 19: "devatenáct"
+    }
+
+    desitky = {
+        20: "dvacet", 30: "třicet", 40: "čtyřicet", 50: "padesát",
+        60: "šedesát", 70: "sedmdesát", 80: "osmdesát", 90: "devadesát"
+    }
+#pokud je číslo menší než deset vybere jen od jednotek
+    if cislo < 10:
+        return jednotky[cislo]
+    # pokud je číslo menší než dvacet vybere od náct
+    elif cislo < 20:
+        return náct[cislo]
+    #pokud je číslo menší než sto vybere jen od desitek
+    elif cislo < 100:
+        d = cislo // 10 * 10 # // vydělí beze zbytku a zjistí kolik je desítek.
+        j = cislo % 10 # to co zbyde po dělení desítkou
+        if j == 0:
+            return desitky[d]# když je není žádný zbytek, využije se pouze slovník desítky
+        else:
+            return desitky[d] + " " + jednotky[j]# sečtení počtu desítek a zbytku
+    elif cislo == 100:
+        return "sto"
+    else:
+        return "mimo rozsah"
 
 if __name__ == "__main__":
     cislo = input("Zadej číslo: ")
