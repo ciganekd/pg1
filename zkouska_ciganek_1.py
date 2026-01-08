@@ -10,12 +10,19 @@
 #
 # instalace pytest:
 # pip install pytest
-
-
 def process_numbers(numbers):
-    # ZDE NAPIŠTE VÁŠ KÓD
-    return []
-
+    result = []
+    
+    for num in numbers:
+        # Kontrola, zda je to číslo (int nebo float), ale ne boolean
+        if not isinstance(num, (int, float)) or isinstance(num, bool):
+            break
+        
+        # Pokud je číslo větší než 5, vynásob ho 2 a přidej do seznamu
+        if num > 5:
+            result.append(num * 2)
+    
+    return result
 
 # Unit testy
 def test_process_numbers():
@@ -24,7 +31,6 @@ def test_process_numbers():
     assert process_numbers([1, 2, 3, 4]) == []
     assert process_numbers([5, 6, 7, 15]) == [12, 14, 30]
     assert process_numbers([True, 4, 8, 10, 15]) == []
-
 
 if __name__ == "__main__":
     test_process_numbers()
