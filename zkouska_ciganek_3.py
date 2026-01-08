@@ -19,13 +19,44 @@ class Shape():
         self.shape_name = shape_name
     
     def __str__(self):
-        return f'{self.shape_name} shape with area {self.area()}'
+        return f'{self.shape_name} shape with area {self.area():.1f}'
 
     def area(self):
         return 0.0
 
 
 # ZDE NAPIŠTE VÁŠ KÓD
+
+class Rectangle(Shape):
+    
+    def __init__(self, width, height):
+        # Zavoláme konstruktor rodičovské třídy s názvem "Rectangle"
+        super().__init__("Rectangle")
+        self.width = width
+        self.height = height
+    
+    def area(self):
+        # Plocha obdelníku = šířka * výška
+        result = self.width * self.height
+        return round(result, 1)
+
+
+class Circle(Shape):
+    
+    def __init__(self, radius):
+        # Zavoláme konstruktor rodičovské třídy s názvem "Circle"
+        super().__init__("Circle")
+        self.radius = radius
+    
+    def area(self):
+        # Plocha kruhu = π * r²
+        import math
+        result = math.pi * self.radius ** 2
+        return round(result, 1)
+    
+    def __str__(self):
+        # Vlastní formát pro výpis kruhu
+        return f"{self.shape_name} shape with a radius of {self.radius} has an area of {self.area():.1f}"
 
 
 from unittest.mock import patch, MagicMock, mock_open
